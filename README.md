@@ -1,0 +1,2 @@
+# launch
+go net framework
