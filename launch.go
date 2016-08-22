@@ -1,19 +1,19 @@
 package launch
 import (
     "net/http"
-    "fmt"
-    "os"
+    "log"
 )
 
 type Launch struct {
 }
 
 func (launch *Launch) Run () {
-    err := http.ListenAndServe(":8080", nil)
+    conf := ResolveConfiguration() 
+    log.Printf("%+v", conf)
+    err := http.ListenAndServe(":" + conf.Port, nil)
     if (err != nil) {
-        fmt.Fprintf(os.Stderr, err.Error())
+        log.Println(err)
         panic("ouch, listen fail")
     }
-    fmt.Println("launch...");
     return;
 }
