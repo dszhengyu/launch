@@ -1,13 +1,16 @@
 package actions
 import (
-    "net/http"
-    "fmt"
+    . "github.com/dszhengyu/launch"
 )
 
 type Index struct {
 }
 
-func (action Index)Execute(w http.ResponseWriter, request *http.Request) {
-    request.ParseForm()
-    fmt.Fprintf(w, "hello world\n")
+func (action Index)Execute(input InputType, output OutputType)(err error) {
+    output["kaka"] = "hehe"
+    output["list"] = []string{"i1","i2"}
+    mapp := make(map[string]string)
+    mapp["mapp"] = "mapppp"
+    output["map"] = mapp
+    return nil
 }
